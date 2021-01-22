@@ -1,10 +1,9 @@
-export default (state = {
+export default function reducer(state = {
   quotes: [],
-}, action) => {
+}, action) {
   switch(action.type){
     case 'ADD_QUOTE':
-      return { quotes: state.quotes.concat(action.payload.content)}
-
+      return { quotes: state.quotes }
 
     default:
       return state;

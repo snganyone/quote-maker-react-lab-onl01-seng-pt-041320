@@ -22,7 +22,9 @@ class QuoteForm extends Component {
     // Handle Form Submit event default
     event.preventDefault();
     // Create quote object from state
+    const q = {...this.state, id: uuid() };
     // Pass quote object to action creator
+    this.props.addQuote(q);
     // Update component state to return to default state
     this.setState({
       content: '',
@@ -37,13 +39,13 @@ class QuoteForm extends Component {
           <div className="col-md-8 col-md-offset-2">
             <div className="panel panel-default">
               <div className="panel-body">
-                <form className="form-horizontal" onSubmit={this.handleOnSubmit}>
+                <form className="form-horizontal" onSubmit={(event) => this.handleOnSubmit(event)}>
                   <div className="form-group">
                     <label htmlFor="content" className="col-md-4 control-label">Quote</label>
                     <div className="col-md-5">
                       <textarea
                         className="form-control"
-                        onChange={this.handleOnChange}
+                        onChange={(event) => this.handleOnChange(event)}
                         value={this.state.content}
                         name="content"
                       />
@@ -55,7 +57,7 @@ class QuoteForm extends Component {
                       <input
                         className="form-control"
                         type="text"
-                        onChange={this.handleOnChange}
+                        onChange={(event) => this.handleOnChange(event)}
                         value={this.state.author}
                         name="author"
                       />
@@ -67,6 +69,8 @@ class QuoteForm extends Component {
                     </div>
                   </div>
                 </form>
+                {this.state.content}
+                {this.state.author}
               </div>
             </div>
           </div>
@@ -77,4 +81,8 @@ class QuoteForm extends Component {
 }
 
 //add arguments to connect as needed
-export default connect()(QuoteForm);
+const mapDispatchToProps = dispatch => ({
+  addQuote: formData => dispatch({ type: 'ADD_QUOTE', payload: formData})
+})
+
+export default connect(null, mapDispatchToProps)(QuoteForm);
