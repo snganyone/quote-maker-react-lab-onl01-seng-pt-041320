@@ -1,9 +1,7 @@
-export default function reducer(state = {
-  quotes: [],
-}, action) {
+export default (state = [], action) => {
   switch(action.type){
     case 'ADD_QUOTE':
-      return { quotes: state.quotes }
+      return { quotes: state }
 
     default:
       return state;
