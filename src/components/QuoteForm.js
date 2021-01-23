@@ -22,7 +22,7 @@ class QuoteForm extends Component {
     // Handle Form Submit event default
     event.preventDefault();
     // Create quote object from state
-    const q = {...this.state, id: uuid() };
+    const q = {author: this.state.author, content: this.state.content, id: uuid(), votes: 0 };
     // Pass quote object to action creator
     this.props.addQuote(q);
     // Update component state to return to default state
@@ -81,8 +81,8 @@ class QuoteForm extends Component {
 }
 
 //add arguments to connect as needed
-const mapDispatchToProps = dispatch => ({
-  addQuote: formData => dispatch({ type: 'ADD_QUOTE', payload: formData})
-})
+// const mapDispatchToProps = dispatch => ({
+//   addQuote: formData => dispatch({ type: 'ADD_QUOTE', payload: formData})
+// })
 
-export default connect(null, mapDispatchToProps)(QuoteForm);
+export default connect(null, {addQuote})(QuoteForm);
