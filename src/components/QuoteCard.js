@@ -5,7 +5,7 @@ const QuoteCard = ({ quote, removeQuote, upvoteQuote, downvoteQuote }) =>
     <div className="card card-inverse card-success card-primary mb-3 text-center">
       <div className="card-block">
         <blockquote className="card-blockquote">
-          <p>{ quote.content }</p>
+          <p></p>
           {/* <footer>- author <cite title="Source Title">{Render Quote Author}</cite></footer> */}
         </blockquote>
       </div>
